@@ -38,6 +38,22 @@
                 {{ $task->status }}
             </p>
 
+            <a href="{{ route('admin.tasks.edit', $task->id) }}">
+                Edit
+            </a>
+
+            <form method="POST"
+                action="{{ route('admin.tasks.destroy', $task->id) }}">
+
+                @csrf
+                @method('DELETE')
+
+                <button type="submit">
+                    Delete
+                </button>
+
+            </form>
+
 
         </div>
 
