@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+
+Route::middleware('auth')->group(function () {
+
+    Route::resource('tasks', TaskController::class);
+
+});
 
 Route::get('/', function () {
     return view('welcome');
