@@ -79,4 +79,19 @@ class TaskController extends Controller
 
         return redirect('/tasks');
     }
+
+    public function complete(Task $task)
+    {
+        $this->authorize('update', $task);
+
+
+        $task->update([
+            'status'=>'completed'
+        ]);
+
+
+        return redirect()
+            ->route('tasks.index')
+            ->with('success','Task marked as completed.');
+    }
 }

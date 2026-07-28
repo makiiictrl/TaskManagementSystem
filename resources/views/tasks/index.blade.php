@@ -105,7 +105,27 @@ Delete
 </button>
 
 
+
+
 </form>
+
+@if($task->status == 'pending')
+
+<form method="POST"
+      action="{{ route('tasks.complete',$task->id) }}">
+
+    @csrf
+
+    <button
+        class="bg-green-600 text-white px-3 py-2 rounded-lg">
+
+        Mark Complete
+
+    </button>
+
+</form>
+
+@endif
 
 
 </div>

@@ -35,4 +35,8 @@ Route::middleware(['auth','admin'])
 
     });
 
+Route::post('/tasks/{task}/complete',
+[TaskController::class,'complete']
+)
+->name('tasks.complete');
 require __DIR__.'/auth.php';

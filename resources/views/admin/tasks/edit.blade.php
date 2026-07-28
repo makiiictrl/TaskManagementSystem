@@ -98,51 +98,6 @@
 
 
 
-
-                    <!-- Status -->
-
-                    <div class="mb-6">
-
-
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-
-                            Status
-
-                        </label>
-
-
-
-                        <select
-                            name="status"
-                            class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        >
-
-
-                            <option value="pending"
-                            {{ $task->status == 'pending' ? 'selected':'' }}>
-
-                                Pending
-
-                            </option>
-
-
-
-                            <option value="completed"
-                            {{ $task->status == 'completed' ? 'selected':'' }}>
-
-                                Completed
-
-                            </option>
-
-
-                        </select>
-
-
-                    </div>
-
-
-
-
                     <div class="flex justify-end gap-3">
 
 
