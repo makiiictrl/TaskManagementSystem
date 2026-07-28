@@ -13,7 +13,7 @@ class TaskController extends Controller
         $tasks = Auth::user()
                      ->tasks()
                      ->latest()
-                     ->get();
+                     ->paginate(1);
 
         return view('tasks.index', compact('tasks'));
     }

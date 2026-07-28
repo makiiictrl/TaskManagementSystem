@@ -15,7 +15,7 @@ class TaskController extends Controller
     {
         $tasks = Task::with('user')
                 ->latest()
-                ->get();
+                ->paginate(1);
 
         return view('admin.tasks.index', compact('tasks'));
     }

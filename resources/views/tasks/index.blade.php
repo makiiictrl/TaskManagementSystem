@@ -136,16 +136,19 @@ Delete
 
 @empty
 
+<div>
+    No tasks available.
+</div>
 
-<div class="col-span-3 text-center text-gray-500">
+@endforelse
 
-No tasks available.
 
 </div>
 
 
-@endforelse
+<div class="mt-6">
 
+    {{ $tasks->links() }}
 
 </div>
 
