@@ -46,12 +46,16 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
+        $this->authorize('update', $task);
+
         return view('tasks.edit', compact('task'));
     }
 
 
     public function update(Request $request, Task $task)
     {
+        $this->authorize('update', $task);
+
         $request->validate([
             'title'=>'required'
         ]);
@@ -69,6 +73,8 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
+        $this->authorize('delete', $task);
+        
         $task->delete();
 
         return redirect('/tasks');
