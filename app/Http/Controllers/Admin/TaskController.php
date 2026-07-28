@@ -13,9 +13,21 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('user')
-                ->latest()
-                ->paginate(1);
+        $query = Task::with('user');
+
+
+        if(request('search')) {
+
+            $query->where('title', 'like', '%' . request('search') . '%');
+
+        }
+
+
+        $tasks = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
 
         return view('admin.tasks.index', compact('tasks'));
     }

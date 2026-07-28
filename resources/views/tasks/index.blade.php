@@ -36,7 +36,41 @@ class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
 
 @endif
 
+<form method="GET"
+      action="{{ route('tasks.index') }}"
+      class="mb-6 flex gap-3">
 
+
+    <input
+        type="text"
+        name="search"
+        value="{{ request('search') }}"
+        placeholder="Search tasks..."
+        class="rounded-lg border-gray-300 w-full"
+    >
+
+
+    <button
+        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
+
+        Search
+
+    </button>
+
+
+    @if(request('search'))
+
+        <a href="{{ route('tasks.index') }}"
+           class="bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded-lg whitespace-nowrap flex items-center">
+
+            Clear Filter
+
+        </a>
+
+    @endif
+
+
+</form>
 
 <div class="grid md:grid-cols-3 gap-6">
 
