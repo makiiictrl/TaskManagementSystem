@@ -1,57 +1,143 @@
 <x-app-layout>
 
-<x-slot name="header">
-    <h2>
-        Edit Task
-    </h2>
-</x-slot>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+
+            <h2 class="font-semibold text-xl text-gray-800">
+                Edit Task
+            </h2>
+
+        </div>
+    </x-slot>
 
 
-<div>
+    <div class="py-12">
 
-<form method="POST"
-      action="{{ route('tasks.update',$task->id) }}">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
 
-@csrf
-@method('PUT')
+            <div class="bg-white shadow-md rounded-lg p-8">
 
 
-<div>
+                <form method="POST"
+                      action="{{ route('tasks.update', $task->id) }}">
 
-<label>
-Title
-</label>
-
-<input 
-type="text"
-name="title"
-value="{{ $task->title }}"
->
-
-</div>
+                    @csrf
+                    @method('PUT')
 
 
-<div>
+                    <!-- Title -->
 
-<label>
-Description
-</label>
+                    <div class="mb-6">
 
-<textarea name="description">
-{{ $task->description }}
-</textarea>
-
-</div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Task Title
+                        </label>
 
 
-<button type="submit">
-Update Task
-</button>
+                        <input
+                            type="text"
+                            name="title"
+                            value="{{ old('title',$task->title) }}"
+                            class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        >
 
 
-</form>
+                        @error('title')
+                            <p class="text-red-500 text-sm mt-2">
+                                {{ $message }}
+                            </p>
+                        @enderror
 
-</div>
+                    </div>
+
+
+
+                    <!-- Description -->
+
+                    <div class="mb-6">
+
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Description
+                        </label>
+
+
+                        <textarea
+                            name="description"
+                            rows="5"
+                            class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        >{{ old('description',$task->description) }}</textarea>
+
+
+                    </div>
+
+
+
+                    <!-- Status -->
+
+                    <div class="mb-6">
+
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Status
+                        </label>
+
+
+                        <select
+                            name="status"
+                            class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        >
+
+                            <option value="pending"
+                                {{ $task->status == 'pending' ? 'selected':'' }}>
+                                Pending
+                            </option>
+
+
+                            <option value="completed"
+                                {{ $task->status == 'completed' ? 'selected':'' }}>
+                                Completed
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+
+
+                    <div class="flex justify-end gap-3">
+
+
+                        <a href="{{ route('tasks.index') }}"
+                           class="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+
+                            Cancel
+
+                        </a>
+
+
+
+                        <button
+                            type="submit"
+                            class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+
+                            Update Task
+
+                        </button>
+
+
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 </x-app-layout>

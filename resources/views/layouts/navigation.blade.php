@@ -16,6 +16,30 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @if(auth()->user()->role === 'admin')
+
+                    <x-nav-link 
+                        :href="route('admin.tasks.index')"
+                        :active="request()->routeIs('admin.tasks.*')"
+                        class="ml-5">
+
+                        {{ __('Manage Tasks') }}
+
+                    </x-nav-link>
+
+                @else
+
+                    <x-nav-link 
+                        :href="route('tasks.index')"
+                        :active="request()->routeIs('tasks.*')"
+                        class="ml-5">
+
+                        {{ __('My Tasks') }}
+
+                    </x-nav-link>
+
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
